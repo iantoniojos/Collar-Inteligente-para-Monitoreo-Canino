@@ -1,5 +1,5 @@
 # Collar-Inteligente-para-Monitoreo-Canino
-Este repositorio contiene el firmware y la documentación técnica del **Collar CanisHealth**, un dispositivo de hardware abierto diseñado para el seguimiento no invasivo de la salud y actividad física en perros. El sistema destaca por su integración en una arquitectura de múltiples capas que conecta el hardware con servicios en la nube y aplicaciones móviles [2, 3].
+Este repositorio contiene el firmware y la documentación técnica del **Collar**, un dispositivo de hardware abierto diseñado para el seguimiento no invasivo de la salud y actividad física en perros. El sistema destaca por su integración en una arquitectura de múltiples capas que conecta el hardware con servicios en la nube y aplicaciones móviles [2, 3].
 
 ## 🌟 Características Principales
 *   **Gestión Inteligente de Energía:** El firmware reduce la frecuencia de la CPU a **80MHz** para optimizar la autonomía [1].
@@ -38,7 +38,6 @@ El hardware forma parte de un ecosistema integral dividido en cuatro niveles ope
 4.  **Capa de Aplicación:** Plataforma de gestión y aplicación móvil para alertas de salud (fiebre, estrés, actividad).
 
 ## 📄 Licencia
-Este proyecto es **Hardware de Código Abierto** y se distribuye bajo la licencia **MIT** (o la licencia que hayas seleccionado en tu informe) [8].
+Este proyecto es **Hardware de Código Abierto** y se distribuye bajo la licencia **MIT**  [8].
 
----
-*Este proyecto sigue los lineamientos de publicación de la revista científica **HardwareX**.*
+
