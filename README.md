@@ -1,71 +1,44 @@
 # Collar-Inteligente-para-Monitoreo-Canino
-Collar Inteligente para el Monitoreo del Bienestar Canino
-Este repositorio contiene el firmware y la documentación técnica para el Collar CanisHealth, un dispositivo de hardware abierto diseñado para el monitoreo constante de la salud y actividad física en perros. El sistema integra sensores de temperatura, pulso cardíaco y movimiento dentro de un ecosistema IoT
-.
-📋 Características Principales
-Monitoreo Multimodal: Captura de temperatura corporal, ritmo cardíaco y niveles de actividad física
-.
-Gestión Eficiente de Energía: El firmware reduce la frecuencia de la CPU a 80MHz y utiliza un pin de control (GPIO 25) para apagar el sensor de pulso durante periodos de inactividad
-.
-Conectividad BLE: Transmisión de datos en tiempo real mediante Bluetooth Low Energy con servicios dedicados para cada métrica de salud
-.
-Análisis en el Borde: Clasificación automática de estados de estrés y actividad directamente en el microcontrolador
-.
-🛠️ Requisitos de Hardware
-Microcontrolador: ESP32 DevKit V1
-.
-Sensores:
-Inercial: MPU6050 (Acelerómetro y Giroscopio)
-.
-Temperatura: DS18B20 (Sumergible/Protegido)
-.
-Pulso: HW-827 (compatible con XD 58C)
-.
-Base: Collar de cuero sintético para montaje artesanal.
-🔌 Diagrama de Conexión (Pinout)
-Para garantizar la replicación exacta del dispositivo, siga este mapeo de pines definido en el código
-:
-Componente
-Pin ESP32
-Función
-DS18B20
-GPIO 4
-Bus OneWire (Datos)
-MPU6050
-GPIO 21 (SDA)
-Bus I2C
-MPU6050
-GPIO 22 (SCL)
-Bus I2C
-HW-827
-GPIO 25
-VCC (Alimentación Controlada)
-HW-827
-GPIO 34
-Señal Analógica
-Nota Crítica: El sensor de pulso debe conectarse al GPIO 25. Esto permite que el sistema corte la energía del LED del sensor para ahorrar batería cuando el perro está en reposo
-.
-💻 Configuración del Software
-Librerías Necesarias
-Asegúrese de instalar las siguientes librerías en su IDE de Arduino:
-OneWire
-DallasTemperature
-Wire
-BLEDevice, BLEServer, BLEUtils, BLE2902 (incluidas en el paquete de ESP32)
-Compilación e Instalación
-Renombre el archivo codigo collar.txt a CanisHealth_Firmware.ino.
-Configure la placa como ESP32 Dev Module.
-Ajuste la CPU Frequency a 80MHz en las herramientas del IDE para optimizar el consumo
-.
-Cargue el código al ESP32.
-📊 Arquitectura del Sistema
-El collar es parte de una arquitectura de cuatro capas:
-Dispositivos (Edge): El collar y sensores ambientales.
-Conectividad: Redes BLE y WiFi
-.
-Cloud: Base de datos para almacenamiento de patrones de salud
-.
-Aplicación: Interfaz para dueños y veterinarios con alertas críticas
-.
-⚖️ Licencia
-Este proyecto se distribuye bajo la licencia MIT
+Este repositorio contiene el firmware y la documentación técnica del **Collar CanisHealth**, un dispositivo de hardware abierto diseñado para el seguimiento no invasivo de la salud y actividad física en perros. El sistema destaca por su integración en una arquitectura de múltiples capas que conecta el hardware con servicios en la nube y aplicaciones móviles [2, 3].
+
+## 🌟 Características Principales
+*   **Gestión Inteligente de Energía:** El firmware reduce la frecuencia de la CPU a **80MHz** para optimizar la autonomía [1].
+*   **Control Dinámico de Sensores:** Utiliza el pin **GPIO 25** como fuente conmutada para alimentar el sensor de pulso, eliminando el consumo del LED cuando el sistema está en reposo [4, 5].
+*   **Monitoreo Multimodal:** Captura temperatura corporal (DS18B20), ritmo cardíaco (HW-827) y niveles de actividad (MPU6050) [4].
+*   **Conectividad BLE:** Transmisión de datos mediante Bluetooth Low Energy bajo el nombre "CollarPerro" [6].
+
+## 🔌 Diagrama de Conexión (Pinout)
+Para replicar el hardware, realice las siguientes conexiones en el **ESP32 DevKit**:
+
+| Componente | Pin ESP32 | Función |
+| :--- | :--- | :--- |
+| **DS18B20** | GPIO 4 | Bus OneWire (Temperatura) |
+| **MPU6050** | GPIO 21 (SDA) | Bus I2C (Movimiento) |
+| **MPU6050** | GPIO 22 (SCL) | Bus I2C (Movimiento) |
+| **HW-827 (VCC)** | **GPIO 25** | **Alimentación Controlada** (No conectar a 3.3V) |
+| **HW-827 (SIG)** | GPIO 34 | Señal Analógica de Pulso |
+
+> **IMPORTANTE:** El pin 25 es fundamental para la gestión de energía definida en el código. El sistema activa este pin y espera **2000ms** para estabilizar la lectura antes de procesar los datos [1, 7].
+
+## 💻 Configuración del Software
+### Librerías Requeridas
+*   `OneWire` e `DallasTemperature` [4].
+*   `Wire` (I2C) y librerías estándar de `BLE` para ESP32 [4].
+
+### Parámetros de Compilación
+1. Instalar el soporte para placas ESP32 en el IDE de Arduino.
+2. Seleccionar la placa **ESP32 Dev Module**.
+3. **Frecuencia de CPU:** Ajustar obligatoriamente a **80MHz** para asegurar el correcto funcionamiento de los umbrales de energía [1].
+
+## 🏛️ Arquitectura del Proyecto
+El hardware forma parte de un ecosistema integral dividido en cuatro niveles operativos [2]:
+1.  **Capa de Dispositivos:** El collar inteligente y estaciones de alimentación IoT.
+2.  **Capa de Conectividad:** Redes WiFi y Bluetooth para el transporte de datos.
+3.  **Capa Cloud:** Centro de datos con bases de datos para usuarios y sensores.
+4.  **Capa de Aplicación:** Plataforma de gestión y aplicación móvil para alertas de salud (fiebre, estrés, actividad).
+
+## 📄 Licencia
+Este proyecto es **Hardware de Código Abierto** y se distribuye bajo la licencia **MIT** (o la licencia que hayas seleccionado en tu informe) [8].
+
+---
+*Este proyecto sigue los lineamientos de publicación de la revista científica **HardwareX**.*
