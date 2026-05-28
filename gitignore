@@ -1,0 +1,21 @@
+# Configuración local sensible
+umbrales.json
+ml_models/
+*.log
+
+# Credenciales (nunca subir)
+auth.php
+
+# Archivos temporales PHP
+*.cache
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+
+# XAMPP / sistema
+Thumbs.db
+.DS_Store
+desktop.ini
