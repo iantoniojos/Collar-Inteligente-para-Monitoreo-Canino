@@ -1,0 +1,8 @@
+{
+  "mascota_id": 1,
+  "total_registros": 224,
+  "fecha_entrenamiento": "2026-05-27 19:49:45.518540",
+  "modelos": {
+    "temperatura": "Entrenado con 224 muestras"
+  }
+}
